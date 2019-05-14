@@ -18,7 +18,7 @@ class CategoryProvider extends Base
      */
     public function afterGetMeta(\Magento\Catalog\Model\Category\DataProvider $plugin_object, array $meta): array
     {   
-        if ($this->isAllowed('Magento_Catalog::category_design')) {
+        if (!$this->isAllowed('Magento_Catalog::category_design')) {
             $meta['schedule_design_update']['children']['custom_design_from']['arguments']['data']['config']['disabled'] = true;
             $meta['schedule_design_update']['children']['custom_design_to']['arguments']['data']['config']['disabled'] = true;
             $meta['design']['arguments']['data']['config']['disabled'] = true;
