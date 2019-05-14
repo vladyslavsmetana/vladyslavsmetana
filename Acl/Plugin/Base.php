@@ -11,24 +11,16 @@ class Base
      *
      * @var \Magento\Framework\AuthorizationInterface
      */
-    private $authorization;        
-    /**
-     * Store Manager
-     *
-     * @var \Magento\Store\Model\StoreManagerInterface
-     */
-    protected $store;
+    private $authorization;
     
     /**
      * @param \Magento\Framework\AuthorizationInterface $authorization
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      */
     public function __construct(
-        \Magento\Framework\AuthorizationInterface $authorization, 
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Framework\AuthorizationInterface $authorization
     ) {
         $this->authorization = $authorization;
-        $this->store = $storeManager->getStore();
     }	
         
     /**
@@ -47,17 +39,17 @@ class Base
      * Disabling meta components
      * 
      * @param array $meta
-     * @param array $parameters
-     * @param string $field_name
+     * @param array $fields
+     * @param string $tabName
      *
      * @return array $meta
      */
-    protected function componentDisable(array $meta, array $parameters, string $field_name): array
+    protected function componentDisable(array $meta, array $fields, string $tabName): array
     {
-        for ($i = 0; $i < count($parameters); $i++) {
-            $meta[$field_name]['children'][$parameters[$i]]['arguments']['data']['config']['serviceDisabled'] = true;
+        foreach ($fields as $field) {
+            $meta[$tabName]['children'][$field]['arguments']['data']['config']['serviceDisabled'] = true;
         }
-        
+
         return $meta;
     }
     
@@ -65,25 +57,40 @@ class Base
      * Disabling product components
      * 
      * @param array $meta
-     * @param array $first_parameters
-     * @param array $second_parameters
-     * @param string $field_name
+     * @param array $subFields
+     * @param array $fields
+     * @param string $attributeName
      *
      * @return array $meta
      */
     protected function productComponentDisable(
         array $meta, 
-        array $first_parameters, 
-        array $second_parameters, 
-        string $field_name
+        array $subFields,
+        array $fields,
+        string $attributeName
     ): array {
-        for ($i = 0; $i < count($first_parameters); $i++) {
-            $meta[$field_name]['children'][$first_parameters[$i]]['children'][$second_parameters[$i]]['arguments']['data']['config']['disabled'] = true;
-            if ($this->store->getStoreId() != 0 && $this->store->getName() != 'admin') {
-                $meta[$field_name]['children'][$first_parameters[$i]]['children'][$second_parameters[$i]]['arguments']['data']['config']['serviceDisabled'] = true;
-            }
+        for ($i = 0; $i < count($subFields); $i++) {
+            $meta[$attributeName]['children'][$subFields[$i]]['children'][$fields[$i]]['arguments']['data']['config']['disabled'] = true;
+            $meta[$attributeName]['children'][$subFields[$i]]['children'][$fields[$i]]['arguments']['data']['config']['serviceDisabled'] = true;
         }
         
+        return $meta;
+    }
+
+    /**
+     * Disabling design tabs
+     *
+     * @param array $meta
+     * @param array $fields
+     *
+     * @return array $meta
+     */
+    protected function tabsDisable(array $meta, array $fields): array
+    {
+        foreach ($fields as $field) {
+            $meta[$field]['arguments']['data']['config']['disabled'] = true;
+        }
+
         return $meta;
     }
 }
