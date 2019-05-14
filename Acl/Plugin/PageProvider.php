@@ -18,7 +18,7 @@ class PageProvider extends Base
      */
     public function afterPrepareMeta(\Magento\Cms\Model\Page\DataProvider $plugin_object, array $meta): array
     {        
-        if ($this->isAllowed('Magento_Cms::page_design')) {
+        if (!$this->isAllowed('Magento_Cms::page_design')) {
             $meta['design']['arguments']['data']['config']['disabled'] = true;
             $meta['custom_design_update']['arguments']['data']['config']['disabled'] = true;
             
