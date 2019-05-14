@@ -18,7 +18,7 @@ class ProductProvider extends Base
      */
     public function afterGetMeta(\Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider $plugin_object, array $meta): array
     {   
-        if ($this->isAllowed('Magento_Catalog::products_design')) {
+        if (!$this->isAllowed('Magento_Catalog::products_design')) {
             $meta['design']['arguments']['data']['config']['disabled'] = true;
             $meta['schedule-design-update']['arguments']['data']['config']['disabled'] = true;        
             
