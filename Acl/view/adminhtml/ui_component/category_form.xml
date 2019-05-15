@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="design">
+        <field name="custom_use_parent_settings">
+            <settings>
+                <imports>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="custom_design">
+            <settings>
+                <imports>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="page_layout">
+            <settings>
+                <imports>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="custom_layout_update">
+            <settings>
+                <imports>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="custom_apply_to_products">
+            <settings>
+                <imports>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="schedule_design_update">
+        <field name="custom_design_from" sortOrder="230" formElement="date">
+            <settings>
+                <imports>
+                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="custom_design_to" sortOrder="240" formElement="date">
+            <settings>
+                <imports>
+                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.serviceDisabled</link>
+                </imports>
+            </settings>
+        </field>
+    </fieldset>
+</form>
