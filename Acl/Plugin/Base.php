@@ -57,21 +57,23 @@ class Base
      * Disabling product components
      * 
      * @param array $meta
-     * @param array $subFields
      * @param array $fields
-     * @param string $attributeName
+     * @param string $tabName
      *
      * @return array $meta
      */
     protected function productComponentDisable(
-        array $meta, 
-        array $subFields,
+        array $meta,
         array $fields,
-        string $attributeName
+        string $tabName
     ): array {
-        for ($i = 0; $i < count($subFields); $i++) {
-            $meta[$attributeName]['children'][$subFields[$i]]['children'][$fields[$i]]['arguments']['data']['config']['disabled'] = true;
-            $meta[$attributeName]['children'][$subFields[$i]]['children'][$fields[$i]]['arguments']['data']['config']['serviceDisabled'] = true;
+        foreach ($fields as $field) {
+            $container = $field == 'custom_design_to'
+                ? 'container_custom_design_from'
+                : 'container_' . $field;
+
+            $meta[$tabName]['children'][$container]['children'][$field]['arguments']['data']['config']['disabled'] = true;
+            $meta[$tabName]['children'][$container]['children'][$field]['arguments']['data']['config']['serviceDisabled'] = true;
         }
         
         return $meta;

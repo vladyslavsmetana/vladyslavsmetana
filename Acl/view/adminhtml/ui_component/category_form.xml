@@ -4,53 +4,55 @@
         <field name="custom_use_parent_settings">
             <settings>
                 <imports>
-                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked || $.data.serviceDisabled</link>
                 </imports>
             </settings>
         </field>
         <field name="custom_design">
             <settings>
                 <imports>
-                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked || $.data.serviceDisabled</link>
                 </imports>
             </settings>
         </field>
         <field name="page_layout">
             <settings>
                 <imports>
-                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked || $.data.serviceDisabled</link>
                 </imports>
             </settings>
         </field>
         <field name="custom_layout_update">
             <settings>
                 <imports>
-                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked || $.data.serviceDisabled</link>
                 </imports>
             </settings>
         </field>
         <field name="custom_apply_to_products">
             <settings>
                 <imports>
-                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked  || $.data.serviceDisabled</link>
+                    <link name="serviceDisabled">${ $.parentName }.custom_use_parent_settings:checked || $.data.serviceDisabled</link>
                 </imports>
             </settings>
         </field>
     </fieldset>
     <fieldset name="schedule_design_update">
-        <field name="custom_design_from" sortOrder="230" formElement="date">
+        <container name="date_group" component="Magento_Ui/js/form/components/group" sortOrder="220">
+        <field name="custom_design_from">
             <settings>
                 <imports>
-                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.serviceDisabled</link>
+                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.disabled</link>
                 </imports>
             </settings>
         </field>
-        <field name="custom_design_to" sortOrder="240" formElement="date">
+        <field name="custom_design_to">
             <settings>
                 <imports>
-                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.serviceDisabled</link>
+                    <link name="disabled">ns = ${ $.ns }, index = custom_use_parent_settings :checked || $.data.disabled</link>
                 </imports>
             </settings>
         </field>
+        </container>
     </fieldset>
 </form>

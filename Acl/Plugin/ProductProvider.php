@@ -22,12 +22,7 @@ class ProductProvider extends Base
             $meta = $this->tabsDisable($meta, ['design', 'schedule-design-update']);
             
             $meta = $this->productComponentDisable(
-                $meta, 
-                [
-                    'container_page_layout', 
-                    'container_options_container', 
-                    'container_custom_layout_update',
-                ], 
+                $meta,
                 [
                     'page_layout', 
                     'options_container', 
@@ -37,13 +32,7 @@ class ProductProvider extends Base
             );
             
             $meta = $this->productComponentDisable(
-                $meta, 
-                [
-                    'container_custom_design_from', 
-                    'container_custom_design_from', 
-                    'container_custom_design', 
-                    'container_custom_layout',
-                ], 
+                $meta,
                 [
                     'custom_design_from', 
                     'custom_design_to', 
@@ -52,8 +41,8 @@ class ProductProvider extends Base
                 ], 
                 'schedule-design-update'
             );
-
         }
+
         return $meta;
     }    
 }
